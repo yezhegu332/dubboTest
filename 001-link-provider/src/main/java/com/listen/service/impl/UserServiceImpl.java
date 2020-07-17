@@ -10,6 +10,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer queryAllUserCount() {
         //调用数据持久层
+        System.out.println("调用了queryAllUserCount");
         return 20;
     }
 }
