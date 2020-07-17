@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.listen</groupId>
+    <artifactId>011-maven-parent</artifactId>
+    <version>1.0</version>
+    <modules>
+        <module>../012-maven-java-01</module>
+        <module>../013-maven-web-01</module>
+        <module>015-maven-web-02</module>
+
+    </modules>
+    <packaging>pom</packaging>
+
+    <!--
+        maven父工程必须遵循以下两点要求：
+        1.packaging标签的文本内容必需设置为pom
+        2.删除src目录
+    -->
+
+    <!--父工程实际上管理的是依赖的版本号-->
+    <properties>
+        <!--
+            在properties标签里面可以自定义标签名称来管理依赖的版本号
+            标签名称 = artifactId标签的文本内容 + "version"单词构成
+        -->
+        <junit.version>4.12</junit.version>
+        <slf4j-log4j12>1.7.25</slf4j-log4j12>
+    </properties>
+
+    <!--管理所有的依赖，不能让子模块无条件继承依赖-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j-log4j12}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

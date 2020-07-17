@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>011-maven-parent</artifactId>
+        <groupId>com.listen</groupId>
+        <version>1.0</version>
+        <relativePath>../011-maven-parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>../014-maven-java-02</module>
+    </modules>
+    <artifactId>012-maven-java-01</artifactId>
+
+    <dependencies>
+        <!--
+            声明式依赖
+            子模块依赖的版本号要继承父工程依赖的版本号
+        -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+    </dependencies>
+    <!--
+        父工程必须遵循以下两点要求：
+        1.packaging标签的文本内容必需设置为pom
+        2.删除src目录
+    -->
+</project>

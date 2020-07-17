@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!--声明服务消费者名称，它是dubbo内部使用的唯一标识名称-->
+    <dubbo:application name="005-link-consumer"/>
+
+    <!--
+        引用远程接口服务
+        id：远程服务代理对象名称
+        interface：远程接口的全限定类名称
+        url：访问远程接口服务的地址
+        registry：不适用注册中心，直连方式，值为：N/A
+    -->
+    <dubbo:reference id="userService" interface="com.listen.dubbo.UserService" url="dubbo://localhost:20880" registry="N/A"/>
+</beans>

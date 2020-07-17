@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.listen.gmall.service.impl"></context:component-scan>
+
+    <dubbo:application name="test01-order-service-consumer"></dubbo:application>
+
+    <dubbo:registry address="zookeeper://192.168.1.4:2181"></dubbo:registry>
+
+
+    <!--配置所有的reference都不检查，注意：优先级-->
+    <!--
+        1）方法级优先，接口级次之，全局配置再次之（精确优先）
+        2）级别一样，则消费者优先
+    -->
+    <dubbo:consumer check="false" timeout="3000"></dubbo:consumer>
+
+    <!--声明需要调用的远程服务的接口，生成远程服务代理-->
+    <!--retries：重试次数，不包含第一次调用，0代表不重试-->
+    <!--幂等（设置重试次数）【查询、删除、修改】  非幂等（不能设置重试次数）【新增】-->
+    <!--stub：本地存根
+    -->
+    <dubbo:reference id="userService" interface="com.listen.service.UserService"  timeout="2000" retries="3" version="2.0.0" stub="com.listen.gmall.service.impl.UserServiceStub" loadbalance="random"></dubbo:reference>
+
+    <!--<dubbo:reference id="userService1" interface="com.listen.service.UserService"  timeout="2000" retries="3" version="1.0.0" stub="com.listen.gmall.service.impl.UserServiceStub" loadbalance="random"></dubbo:reference>-->
+</beans>

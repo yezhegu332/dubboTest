@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+    <dubbo:application name="008-zk-consumer"/>
+
+<!--    <dubbo:registry address="zookeeper://192.168.1.4:2181"/>-->
+
+    <!--Linux注册中心-->
+    <dubbo:registry address="zookeeper://192.168.183.200:2181"/>
+
+    <!--
+        远程服务代理对象的名称
+        id：远程服务代理对象的名称
+        interface：远程接口的全限定类名
+        check：服务启动时检测注册中心是否有该服务，默认为true
+    -->
+    <dubbo:reference id="userService" interface="com.listen.service.UserService" check="false"/>
+</beans>
