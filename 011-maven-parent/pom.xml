@@ -27,7 +27,7 @@
             在properties标签里面可以自定义标签名称来管理依赖的版本号
             标签名称 = artifactId标签的文本内容 + "version"单词构成
         -->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <slf4j-log4j12>1.7.25</slf4j-log4j12>
     </properties>
 
